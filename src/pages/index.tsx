@@ -66,7 +66,7 @@ export default function Home() {
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
-			<main className='max-w-4xl mb-4 font-sans sm:mt-12 sm:p-6 sm:mx-auto '>
+			<main className='max-w-4xl mb-10 font-sans sm:mt-12 sm:p-6 sm:mx-auto '>
 				<motion.div
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
@@ -74,7 +74,7 @@ export default function Home() {
 					className='flex flex-col border-b border-black shadow-lg bg-gradient-to-r from-blue-200 to-sky-100 sm:flex-row sm:border sm:m-4'
 				>
 					<img
-						className='object-cover transition-all border-r border-black sm:w-44 saturate-150'
+						className='object-none border-r border-black sm:w-44 saturate-150'
 						src='/QS25_Plate1.png'
 						alt='map'
 					/>
@@ -95,8 +95,15 @@ export default function Home() {
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{ duration: 1 }}
-					className='flex flex-col max-w-4xl mt-12 sm:mx-auto'
+					className='flex flex-col max-w-4xl sm:mx-auto'
 				>
+					<div className='h-8 mx-auto mt-2 mb-5 overflow-auto border-black shadow-lg sm:border border-y w-fit sm:mx-4'>
+						<img
+							className='object-none saturate-150'
+							src='/QS25_Plate1.png'
+							alt='map'
+						/>
+					</div>
 					<div className='flex flex-col p-2 border-black bg-gradient-to-r from-blue-200 to-sky-100 sm:border border-y sm:mx-4 last:shadow-md'>
 						<h2 className='mx-auto text-3xl font-bold'>Selected Projects</h2>
 						<div className='mt-1 w-2xl'>
