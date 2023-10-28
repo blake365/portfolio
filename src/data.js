@@ -1,40 +1,25 @@
 const projects = [
-	{
-		repo: ['breed-suggest'],
-		title: 'Breed Suggester',
-		description:
-			'A quick toy site using GPT-3.5. The site suggests dog breeds based on the traits selected by the user. As a bonus there is a link to the AKC page for the breed. Future features may include an image of the dog breed next to the description. ',
-		type: 'Front End',
-		stack: ['Next.js', 'GPT-3', 'Material UI'],
-		live: 'http://breed-suggest.vercel.app',
-		github: ['https://github.com/blake365/breed-suggest'],
-		image: 'link to image',
-		sidebar: 'dots.svg',
-		firstCommit: '01/14/2023',
-		status: 'Paused',
-		statusColor: 'purple',
-	},
-	{
-		repo: ['atlparks'],
-		title: 'Atlanta Parks',
-		description:
-			'A site built with Next.js, Supabase, and Mantine UI components. The site uses static site generation and loads data from the Supabase database at build time. There is an admin page feature that allows adding, editing and deleting parks. The site has a search page that allows filtering from many different criteria, full text search of the park descriptions, and a location search to find parks near the user. The data has been compiled by me to create resource for people in Atlanta.',
-		type: 'Serverless',
-		stack: ['Next.js', 'SSG', 'Supabase', 'Postgres', 'Mantine UI'],
-		live: 'http://atlparks.vercel.app',
-		github: ['https://github.com/blake365/atlparks'],
-		image: 'link to image',
-		sidebar: 'stripe2.svg',
-		firstCommit: '12/24/2022',
-		status: 'Final Touches',
-		statusColor: 'pink',
-	},
+	// {
+	// 	repo: ['breed-suggest'],
+	// 	title: 'Breed Suggester',
+	// 	description:
+	// 		'A quick toy site using GPT-3.5. The site suggests dog breeds based on the traits selected by the user. As a bonus there is a link to the AKC page for the breed. Future features may include an image of the dog breed next to the description. ',
+	// 	type: 'Front End',
+	// 	stack: ['Next.js', 'GPT-3', 'Material UI'],
+	// 	live: 'http://breed-suggest.vercel.app',
+	// 	github: ['https://github.com/blake365/breed-suggest'],
+	// 	image: 'link to image',
+	// 	sidebar: 'dots.svg',
+	// 	firstCommit: '01/14/2023',
+	// 	status: 'Paused',
+	// 	statusColor: 'purple',
+	// },
 
 	{
 		repo: ['promisance_front', 'typescript_promisance'],
-		title: 'Typescript Promisance',
+		title: 'NeoPromisance',
 		description:
-			'A port of a classic multiplayer browser game from PHP to full stack typescript. The game involves building up an empire, managing resources, interacting with other players, and vying to have the highest networth of all the players. The front end is built with create-react-app for the single page application experience. User and empire data is managed with redux. The back end is a typescript node express server with a postgres database. TypeORM is used to communicate with the database. At this time many of the single player features are implemented but there are many multiplayer features that still need to be added. The project is split into two repos, one for the front end and one for the back end.',
+			'A port of a classic multiplayer browser game from PHP to full stack javascript. The game involves building up an empire, managing resources, interacting with other players, and vying to have the highest net worth of all the players. The front end is built with Vite for the single page application experience. User and empire data is managed with Redux. The back end is a Typescript Node.js Express server with a Postgres database. TypeORM is used to communicate with the database. The game is currently live and playable as I add the last few features and make game play tweaks. The project is split into two repos, one for the front end and one for the back end.',
 		type: 'Full Stack',
 		stack: [
 			'React',
@@ -47,7 +32,7 @@ const projects = [
 			'Node',
 			'Express',
 		],
-		live: null,
+		live: 'https://www.neopromisance.com',
 		github: [
 			'https://github.com/blake365/promisance_front',
 			'https://github.com/blake365/typescript_promisance',
@@ -72,6 +57,21 @@ const projects = [
 		firstCommit: '12/27/2021',
 		status: 'Maintenance',
 		statusColor: 'green',
+	},
+	{
+		repo: ['atlparks'],
+		title: 'Atlanta Parks',
+		description:
+			'A site built with Next.js, Supabase, and Mantine UI components. The site uses static site generation and loads data from the Supabase database at build time. There is an admin page feature that allows adding, editing and deleting parks. The site has a search page that allows filtering from many different criteria, full text search of the park descriptions, and a location search to find parks near the user. The data has been compiled by me to create resource for people in Atlanta.',
+		type: 'Serverless',
+		stack: ['Next.js', 'SSG', 'Supabase', 'Postgres', 'Mantine UI'],
+		live: 'http://atlparks.vercel.app',
+		github: ['https://github.com/blake365/atlparks'],
+		image: 'link to image',
+		sidebar: 'stripe2.svg',
+		firstCommit: '12/24/2022',
+		status: 'Final Touches',
+		statusColor: 'pink',
 	},
 	{
 		repo: ['albumSurvivor'],

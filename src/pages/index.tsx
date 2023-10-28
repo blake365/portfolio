@@ -85,7 +85,7 @@ export default function Home() {
 						</h2>
 						<h3 className='text-lg sm:w-3/4'>
 							Exploring the Southeast through{' '}
-							<span className='font-semibold text-darkergreen'>
+							<span className='font-semibold text-emerald-600'>
 								geotechnical
 							</span>{' '}
 							engineering by day and coding side projects by night.
@@ -108,21 +108,21 @@ export default function Home() {
 							<div className='flex flex-row justify-evenly'>
 								<div className='flex flex-col'>
 									<div
-										className='w-[40px] h-[40px] border-black border mx-auto bg-beige shadow-md'
+										className='w-[40px] h-[40px] border-black border mx-auto bg-beige shadow-md mb-1'
 										style={{ backgroundImage: 'url(/dots.svg)' }}
 									></div>
 									<div>Front End</div>
 								</div>
 								<div className='flex flex-col'>
 									<div
-										className='w-[40px] h-[40px] border-black border mx-auto bg-beige shadow-md'
+										className='w-[40px] h-[40px] border-black border mx-auto bg-beige shadow-md mb-1'
 										style={{ backgroundImage: 'url(/stripe2.svg)' }}
 									></div>
 									<div>Serverless</div>
 								</div>
 								<div className='flex flex-col'>
 									<div
-										className='w-[40px] h-[40px] border-black border mx-auto bg-beige shadow-md'
+										className='w-[40px] h-[40px] border-black border mx-auto bg-beige shadow-md mb-1'
 										style={{ backgroundImage: 'url(/bigstripe.svg)' }}
 									></div>
 									<div>Full Stack</div>
@@ -154,7 +154,7 @@ export default function Home() {
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 1 }}
 								transition={{ duration: 0.5 }}
-								className='flex flex-row transition-all border-black bg-beige last:shadow-lg first:border-t-2 hover:z-10 hover:shadow-lg child:hover:shadow-md'
+								className='flex flex-row transition-all border-black bg-beige last:shadow-lg first:border-t-2'
 								key={project.title}
 							>
 								<div
@@ -169,7 +169,7 @@ export default function Home() {
 												{project.live ? (
 													<Link
 														href={project.live}
-														className='inline ml-2 w-36 hover:text-darkergreen'
+														className='inline ml-2 w-36 hover:text-emerald-600'
 														target='_blank'
 													>
 														<IconExternalLink className='inline' />
@@ -192,7 +192,7 @@ export default function Home() {
 														<Link
 															key={link}
 															href={link}
-															className='flex items-center p-1 rounded-md shadow-md text-beige bg-darkgreen hover:bg-darkergreen w-fit'
+															className='flex items-center p-1 rounded-md shadow-md bg-emerald-600 text-beige hover:bg-emerald-500 w-fit'
 															target='_blank'
 														>
 															<IconBrandGithub
@@ -212,7 +212,7 @@ export default function Home() {
 										{project.stack.map((item) => (
 											<span
 												key={item}
-												className='px-1 mb-1 mr-1 border border-black shadow-md text-beige bg-brown'
+												className='px-1 mb-1 mr-1 transition-all border border-black shadow-md hover:-translate-y-1 text-beige bg-brown'
 											>
 												{item}
 											</span>
