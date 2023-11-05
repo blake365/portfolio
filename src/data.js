@@ -42,6 +42,10 @@ const projects = [
 		firstCommit: '01/19/2022',
 		status: 'Paused',
 		statusColor: 'purple',
+		screenshots: {
+			small: [''],
+			large: ['/promi-home.webp', '/promi-explore.webp', '/promi-dark.webp'],
+		},
 	},
 	{
 		repo: ['usgs_quakes'],
@@ -57,6 +61,10 @@ const projects = [
 		firstCommit: '12/27/2021',
 		status: 'Maintenance',
 		statusColor: 'green',
+		screenshots: {
+			small: [''],
+			large: ['/usgs-quakes-home.webp', '/usgs-quakes-page.webp'],
+		},
 	},
 	{
 		repo: ['atlparks'],
@@ -78,12 +86,20 @@ const projects = [
 		firstCommit: '12/24/2022',
 		status: 'Final Touches',
 		statusColor: 'pink',
+		screenshots: {
+			small: [''],
+			large: [
+				'/atlparks-home.webp',
+				'/atlparks-search.webp',
+				'/atlparks-page.webp',
+			],
+		},
 	},
 	{
 		repo: ['albumSurvivor'],
 		title: 'Album Survivor',
 		description:
-			'An interactive website where users are presented with a series of albums and their tracks. Users vote each day for their least favorite track. The track with the highest number of votes is eliminated until the best song is left standing. Registered users can see their vote history but non-registered users can vote as well. Admins are able to add, delete, and edit albums and tracks. Each day an archive of the votes is saved. Steps are taken to try and prevent users from casting multiple votes each day.',
+			'My first large original project (and it shows). On this site, visitors are presented with a series of albums and their tracks. Users vote each day for their least favorite track. The track with the highest number of votes is eliminated until the best song is left standing. Registered users can see their vote history but non-registered users can vote as well. Admins are able to add, delete, and edit albums and tracks. Each day an archive of the votes is saved. Steps are taken to try and prevent users from casting multiple votes each day.',
 		type: 'Full Stack',
 		stack: [
 			'React',
@@ -102,6 +118,10 @@ const projects = [
 		firstCommit: '11/01/2020',
 		status: 'Complete',
 		statusColor: 'green',
+		screenshots: {
+			small: [''],
+			large: ['/albumsurvivor-home.webp', '/albumsurvivor-admin.webp'],
+		},
 	},
 ]
 

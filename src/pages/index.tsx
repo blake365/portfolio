@@ -2,8 +2,9 @@ import Head from 'next/head'
 import Link from 'next/link'
 import projects from '../data'
 import type { InferGetServerSidePropsType } from 'next'
+import { useState, useRef, useEffect } from 'react'
 
-import { motion } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 
 import {
 	IconExternalLink,
@@ -13,6 +14,7 @@ import {
 } from '@tabler/icons-react'
 
 import { Octokit } from '@octokit/core'
+import Image from 'next/image'
 
 export const getServerSideProps = async () => {
 	const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
@@ -85,7 +87,7 @@ export default function Home({
 						</h2>
 						<h3 className='text-lg sm:w-3/4'>
 							Exploring the Southeast through{' '}
-							<span className='font-semibold text-emerald-600'>
+							<span className='font-semibold text-emerald-700'>
 								geotechnical
 							</span>{' '}
 							engineering by day and coding side projects by night.
@@ -94,7 +96,7 @@ export default function Home({
 							{/* github, linkedin and email links */}
 							<Link
 								href='https://github.com/blake365'
-								className='hover:scale-110'
+								className='flex items-center p-1 rounded-md shadow-md hover:scale-110 bg-emerald-700 text-beige hover:bg-emerald-500 w-fit'
 								target='_blank'
 								aria-label='github'
 							>
@@ -102,7 +104,7 @@ export default function Home({
 							</Link>
 							<Link
 								href='https://www.linkedin.com/in/blakeamorgan/'
-								className='hover:scale-110'
+								className='flex items-center p-1 rounded-md shadow-md hover:scale-110 bg-emerald-700 text-beige hover:bg-emerald-500 w-fit'
 								target='_blank'
 								aria-label='linkedin'
 							>
@@ -110,7 +112,7 @@ export default function Home({
 							</Link>
 							<Link
 								href='mailto:blake365morgan@me.com'
-								className='hover:scale-110'
+								className='flex items-center p-1 rounded-md shadow-md hover:scale-110 bg-emerald-700 text-beige hover:bg-emerald-500 w-fit'
 								target='_blank'
 								aria-label='email me'
 							>
@@ -200,24 +202,28 @@ export default function Home({
 									className='w-[40px] sm:w-[50px] border-black border-b-2 border-l-0 sm:border-l-2 border-x-2 sm:border-r-0 bg-beige shadow-md'
 									style={{ backgroundImage: `url(${project.sidebar})` }}
 								></div>
-								<div className='flex flex-col w-full px-4 pt-2 border-b-2 border-black sm:border-x-2'>
-									<div className='flex flex-row flex-wrap items-baseline justify-between mb-1'>
+								<div className='flex flex-col w-full px-4 border-b-2 border-black sm:border-x-2'>
+									<div className='flex flex-row flex-wrap items-baseline justify-between mb-2'>
 										<h2 className='text-3xl font-bold align-baseline'>
 											{project.title}
 											<span>
 												{project.live ? (
 													<Link
 														href={project.live}
-														className='inline ml-2 w-36 hover:text-emerald-600'
+														className='inline ml-2 w-36 hover:text-emerald-500 text-emerald-700'
 														target='_blank'
 													>
-														<IconExternalLink className='inline' />
+														<IconExternalLink
+															className='inline hover:scale-110'
+															width={25}
+															height={25}
+														/>
 													</Link>
 												) : null}
 											</span>
 										</h2>
 										<div className='inline-block h-full mr-1'>
-											{project.firstCommit}
+											{/* {project.firstCommit} */}
 										</div>
 									</div>
 									<div className='text-md'>{project.description}</div>
@@ -231,7 +237,7 @@ export default function Home({
 														<Link
 															key={link}
 															href={link}
-															className='flex items-center p-1 rounded-md shadow-md bg-emerald-600 text-beige hover:bg-emerald-500 w-fit'
+															className='flex items-center p-1 rounded-md shadow-md bg-emerald-700 text-beige hover:scale-110 hover:bg-emerald-500 w-fit'
 															target='_blank'
 														>
 															<IconBrandGithub
@@ -240,7 +246,7 @@ export default function Home({
 																height={20}
 															/>
 														</Link>
-														<span className='ml-1'>
+														<span className='ml-1 font-semibold'>
 															Last Commit: {formattedDateString}
 														</span>
 													</div>
@@ -255,7 +261,7 @@ export default function Home({
 														<Link
 															key={link}
 															href={link}
-															className='flex items-center p-1 rounded-md shadow-md bg-emerald-600 text-beige hover:bg-emerald-500 w-fit'
+															className='flex items-center p-1 rounded-md shadow-md bg-emerald-700 text-beige hover:scale-110 hover:bg-emerald-500 w-fit'
 															target='_blank'
 														>
 															<IconBrandGithub
@@ -264,7 +270,7 @@ export default function Home({
 																height={20}
 															/>
 														</Link>
-														<span className='ml-1'>
+														<span className='ml-1 font-semibold'>
 															Last Commit: {commitArray[index]}
 														</span>
 													</div>
@@ -281,6 +287,22 @@ export default function Home({
 											</span>
 										))}
 									</div>
+									<details className='mb-2 transition-all duration-500 ease-in-out transform'>
+										<summary className='text-lg font-semibold cursor-pointer text-emerald-700'>
+											Screenshots
+										</summary>
+										<div className=''>
+											{project.screenshots.large.map((item) => (
+												<img
+													key={item}
+													src={item}
+													alt='screenshot'
+													className='m-3 ml-0 border-2 border-black shadow-md '
+													loading='lazy'
+												/>
+											))}
+										</div>
+									</details>
 								</div>
 							</motion.div>
 						)
