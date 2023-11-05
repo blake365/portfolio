@@ -2,9 +2,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import projects from '../data'
 import type { InferGetServerSidePropsType } from 'next'
-import { useState, useRef, useEffect } from 'react'
 
-import { motion, useInView } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 import {
 	IconExternalLink,
@@ -14,7 +13,6 @@ import {
 } from '@tabler/icons-react'
 
 import { Octokit } from '@octokit/core'
-import Image from 'next/image'
 
 export const getServerSideProps = async () => {
 	const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
@@ -76,21 +74,21 @@ export default function Home({
 					className='flex flex-col border-b-2 border-black shadow-md bg-beige sm:flex-row sm:border-2'
 				>
 					<img
-						className='object-cover border-b-2 border-black shadow-md sm:border-r-2 sm:border-b-0 sm:shadow-transparent sm:w-44 saturate-150'
+						className='object-cover border-t-2 border-b-2 border-black shadow-md sm:border-r-2 sm:border-b-0 sm:shadow-transparent sm:w-48 saturate-150 h-80 sm:h-auto sm:border-t-0'
 						src='/QS25_Plate1png.png'
 						alt='map'
 					/>
-					<div className='mx-4 my-2'>
-						<h1 className='py-3 text-5xl font-bold'>Blake Morgan</h1>
+					<div className='py-5 mx-4 my-2'>
+						<h1 className='pb-3 text-5xl font-bold'>Blake Morgan</h1>
 						<h2 className='py-1 text-2xl font-semibold'>
 							Professional Geologist / Hobby Web Developer
 						</h2>
-						<h3 className='text-lg sm:w-3/4'>
-							Exploring the Southeast through{' '}
+						<h3 className='text-lg sm:w-4/5'>
+							Exploring the southeast through{' '}
 							<span className='font-semibold text-emerald-700'>
-								geotechnical
+								geotechnical engineering
 							</span>{' '}
-							engineering by day and coding side projects by night.
+							by day and coding side projects by night.
 						</h3>
 						<div className='flex flex-row mt-2 space-x-5 '>
 							{/* github, linkedin and email links */}
