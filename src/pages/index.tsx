@@ -1,67 +1,67 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link'
 import projects from '../data'
-import { useState, useEffect } from 'react'
+import type { InferGetServerSidePropsType } from 'next'
 
 import { motion } from 'framer-motion'
 
-import { IconExternalLink, IconBrandGithub } from '@tabler/icons-react'
+import {
+	IconExternalLink,
+	IconBrandGithub,
+	IconBrandLinkedin,
+	IconMail,
+} from '@tabler/icons-react'
 
 import { Octokit } from '@octokit/core'
 
-export default function Home() {
-	const [commits, setCommits] = useState<String[]>([])
-	const [loading, setLoading] = useState(true)
-
+export const getServerSideProps = async () => {
 	const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
 
 	let repos: string[] = []
+	const owner = 'blake365'
 
-	useEffect(() => {
-		// setLoading(true)
-		const owner = 'blake365'
+	projects.forEach((project) => {
+		project.repo.forEach((item) => repos.push(item))
+	})
 
-		projects.forEach((project) => {
-			project.repo.forEach((item) => repos.push(item))
+	const fetchCommits = async () => {
+		const commitPromises = repos.map(async (repo) => {
+			const MostRecentCommit = await octokit.request(
+				`GET /repos/{owner}/{repo}/commits`,
+				{ owner, repo: repo, per_page: 1 }
+			)
+
+			if (MostRecentCommit.data[0].commit.author?.date) {
+				return MostRecentCommit.data[0].commit.author?.date
+			}
+
+			return ''
 		})
 
-		// console.log(repos)
+		const commitList = await Promise.all(commitPromises)
+		return commitList
+	}
 
-		const fetchCommits = async () => {
-			const commitPromises = repos.map(async (repo) => {
-				const MostRecentCommit = await octokit.request(
-					`GET /repos/{owner}/{repo}/commits`,
-					{ owner, repo: repo, per_page: 1 }
-				)
+	const commitList = await fetchCommits()
 
-				if (MostRecentCommit.data[0].commit.author?.date) {
-					return MostRecentCommit.data[0].commit.author?.date
-				}
+	return {
+		props: {
+			commitList,
+			projects,
+		},
+	}
+}
 
-				return ''
-			})
-
-			const commitList = await Promise.all(commitPromises)
-			return commitList
-		}
-		fetchCommits()
-			.then((commitList) => {
-				setCommits(commitList)
-				setLoading(false)
-			})
-			.catch((err) => console.log(err))
-	}, [])
-
-	// console.log(commits)
-
+export default function Home({
+	commitList,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
 	return (
 		<>
 			<Head>
 				<title>Blake Morgan</title>
 				<meta
 					name='description'
-					content='Blake Morgan web development portfolio'
+					content="Blake Morgan's web development portfolio"
 				/>
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.ico' />
@@ -90,6 +90,33 @@ export default function Home() {
 							</span>{' '}
 							engineering by day and coding side projects by night.
 						</h3>
+						<div className='flex flex-row mt-2 space-x-5 '>
+							{/* github, linkedin and email links */}
+							<Link
+								href='https://github.com/blake365'
+								className='hover:scale-110'
+								target='_blank'
+								aria-label='github'
+							>
+								<IconBrandGithub />
+							</Link>
+							<Link
+								href='https://www.linkedin.com/in/blakeamorgan/'
+								className='hover:scale-110'
+								target='_blank'
+								aria-label='linkedin'
+							>
+								<IconBrandLinkedin />
+							</Link>
+							<Link
+								href='mailto:blake365morgan@me.com'
+								className='hover:scale-110'
+								target='_blank'
+								aria-label='email me'
+							>
+								<IconMail />
+							</Link>
+						</div>
 					</div>
 				</motion.div>
 
@@ -134,13 +161,25 @@ export default function Home() {
 
 				<div className='flex flex-col max-w-4xl mt-6 shadow-lg'>
 					{projects.map((project, index) => {
-						if (index > 2) {
+						if (index > 0) {
 							index += 1
 						}
-
+						let commitArray: string[] = []
 						let formattedDateString = 'Loading'
-						if (!loading) {
-							const dateString = commits[index]
+
+						if (project.github.length > 1) {
+							project.github.forEach((item, index) => {
+								const dateString = commitList[index]
+
+								const year = dateString.substring(0, 4)
+								const month = dateString.substring(5, 7)
+								const day = dateString.substring(8, 10)
+
+								formattedDateString = [month, day, year].join('/')
+								commitArray.push(formattedDateString)
+							})
+						} else {
+							const dateString = commitList[index]
 
 							const year = dateString.substring(0, 4)
 							const month = dateString.substring(5, 7)
@@ -182,8 +221,8 @@ export default function Home() {
 										</div>
 									</div>
 									<div className='text-md'>{project.description}</div>
-									<div>
-										{!loading && project.github.length > 0
+									<div className='sm:space-x-5 sm:flex'>
+										{project.github.length === 1
 											? project.github.map((link, index) => (
 													<div
 														className='flex flex-row items-center my-1'
@@ -203,6 +242,30 @@ export default function Home() {
 														</Link>
 														<span className='ml-1'>
 															Last Commit: {formattedDateString}
+														</span>
+													</div>
+											  ))
+											: null}
+										{project.github.length > 1
+											? project.github.map((link, index) => (
+													<div
+														className='flex flex-row items-center my-1'
+														key={index}
+													>
+														<Link
+															key={link}
+															href={link}
+															className='flex items-center p-1 rounded-md shadow-md bg-emerald-600 text-beige hover:bg-emerald-500 w-fit'
+															target='_blank'
+														>
+															<IconBrandGithub
+																className='inline'
+																width={20}
+																height={20}
+															/>
+														</Link>
+														<span className='ml-1'>
+															Last Commit: {commitArray[index]}
 														</span>
 													</div>
 											  ))
