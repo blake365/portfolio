@@ -224,7 +224,13 @@ export default function Home({
 											{/* {project.firstCommit} */}
 										</div>
 									</div>
-									<div className='text-md'>{project.description}</div>
+									<div className='space-y-2 text-md'>
+										{project.description.split('/n').map((item, index) => (
+											<div className='' key={index}>
+												{item}
+											</div>
+										))}
+									</div>
 									<div className='sm:space-x-5 sm:flex'>
 										{project.github.length === 1
 											? project.github.map((link, index) => (

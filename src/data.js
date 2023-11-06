@@ -19,7 +19,7 @@ const projects = [
 		repo: ['promisance_front', 'typescript_promisance'],
 		title: 'NeoPromisance',
 		description:
-			'A port of a classic multiplayer browser game from PHP to full stack javascript. The game involves building up an empire, managing resources, interacting with other players, and vying to have the highest net worth of all the players. The front end is built with Vite for the single page application experience. User and empire data is managed with Redux. The back end is a Typescript Node.js Express server with a Postgres database. TypeORM is used to communicate with the database. The game is currently live and playable as I add the last few features and make game play tweaks. The project is split into two repos, one for the front end and one for the back end.',
+			'A remake of a classic multiplayer browser game from PHP to full stack javascript. While the game mechanic formulas are taken from the original PHP code, many systems were written from scratch or heavily modified. The game revolves around players building empires, managing resources, interacting with one another, and competing to achieve the highest net worth among all participants. /n The front end is built with Vite for the single page application experience. User and empire data is managed with Redux. The back end is a Typescript Node.js Express server with a Postgres database. TypeORM is used to communicate with the database. The game is currently live and playable as I add the last few features and make game play tweaks. The project is split into two repos, one for the front end and one for the back end.',
 		type: 'Full Stack',
 		stack: [
 			'React',
@@ -51,7 +51,7 @@ const projects = [
 		repo: ['usgs_quakes'],
 		title: 'USGS Quakes',
 		description:
-			'This site is built with Next.js and Tailwind to display data from the USGS Earthquakes API. The site shows a featured earthquake, the ten most recent earthquakes over a certain magnitude, and has a search filter to search the entire catalog of earthquake records. Each quake has a details page that shows either a shakemap or the location on a map as well as recent nearby quakes. The description of the event on each page includes human impact and a tectonic summary depending on what data is available.',
+			'This site is built with Next.js and Tailwind to display data from the USGS Earthquakes API. The site showcases a featured earthquake, displays the ten most recent earthquakes above a certain magnitude, and offers a search filter for exploring the entire earthquake catalog. SWR is used to check for new recent earthquakes without reloading the site. Each quake has a details page that shows either a shakemap or the location as well as recent nearby quakes. The event descriptions include human impact and a tectonic summary based on available data, providing users with comprehensive earthquake insights.',
 		type: 'Front End',
 		stack: ['Next.js', 'Server Side Rendering', 'Tailwind'],
 		live: 'http://usgs-quakes.netlify.app',
@@ -70,7 +70,7 @@ const projects = [
 		repo: ['atlparks'],
 		title: 'Atlanta Parks',
 		description:
-			'A site built with Next.js, Supabase, and Mantine UI components. The site uses static site generation and loads data from the Supabase database at build time. There is an admin page feature that allows adding, editing and deleting parks. The site has a search page that allows filtering from many different criteria, full text search of the park descriptions, and a location search to find parks near the user. The data has been compiled by me to create resource for people in Atlanta.',
+			'A site built with Next.js, Supabase, and Mantine UI components. The site utilizes static site generation, loading data from the Supabase database during the build process. It includes an admin page feature enabling park management, including adding, editing, and deleting parks. The site has a search page that allows filtering from many different criteria, full text search of the park descriptions, and a location search to find parks near the user. I compiled the data to create a valuable resource for Atlanta residents, enhancing their access to park information. Users can also submit information about parks to add or correct any details.',
 		type: 'Serverless',
 		stack: [
 			'Next.js',
@@ -99,7 +99,7 @@ const projects = [
 		repo: ['albumSurvivor'],
 		title: 'Album Survivor',
 		description:
-			'My first large original project (and it shows). On this site, visitors are presented with a series of albums and their tracks. Users vote each day for their least favorite track. The track with the highest number of votes is eliminated until the best song is left standing. Registered users can see their vote history but non-registered users can vote as well. Admins are able to add, delete, and edit albums and tracks. Each day an archive of the votes is saved. Steps are taken to try and prevent users from casting multiple votes each day.',
+			'My first large original project (and it shows). On this site, visitors are presented with a series of albums and their tracks. Users vote each day for their least favorite track and the track with the highest number of votes is eliminated until the best song survives. Registered and non-registered users can participate, with registered users having access to their voting history. Steps are taken to try and prevent users from casting multiple votes each day and a daily vote archive is saved. Admins have the ability to manage albums and tracks by adding, deleting, and editing content. ',
 		type: 'Full Stack',
 		stack: [
 			'React',
