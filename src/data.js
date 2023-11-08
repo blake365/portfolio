@@ -45,9 +45,24 @@ const projects = [
 		screenshots: {
 			small: [''],
 			large: [
-				{ link: '/promi-home.webp', height: 3668, width: 1210 },
-				{ link: '/promi-explore.webp', height: 1832, width: 3068 },
-				{ link: '/promi-dark.webp', height: 3596, width: 6136 },
+				{
+					link: '/promi-home.webp',
+					height: 3668,
+					width: 1210,
+					blur: '/promi-home@0.5x.webp',
+				},
+				{
+					link: '/promi-explore.webp',
+					height: 1832,
+					width: 3068,
+					blur: '/promi-explore@0.5x.webp',
+				},
+				{
+					link: '/promi-dark.webp',
+					height: 3596,
+					width: 6136,
+					blur: '/promi-dark@0.5x.webp',
+				},
 			],
 		},
 	},
@@ -68,8 +83,18 @@ const projects = [
 		screenshots: {
 			small: [''],
 			large: [
-				{ link: '/usgs-quakes-home.webp', width: 1721, height: 3652 },
-				{ link: '/usgs-quakes-page.webp', width: 1721, height: 1927 },
+				{
+					link: '/usgs-quakes-home.webp',
+					width: 1721,
+					height: 3652,
+					blur: '/usgs-quakes-home@0.5x.webp',
+				},
+				{
+					link: '/usgs-quakes-page.webp',
+					width: 1721,
+					height: 1927,
+					blur: '/usgs-quakes-page@0.5x.webp',
+				},
 			],
 		},
 	},
@@ -96,9 +121,24 @@ const projects = [
 		screenshots: {
 			small: [''],
 			large: [
-				{ link: '/atlparks-home.webp', width: 1084, height: 1556 },
-				{ link: '/atlparks-search.webp', width: 2168, height: 2062 },
-				{ link: '/atlparks-page.webp', width: 1084, height: 2923 },
+				{
+					link: '/atlparks-home.webp',
+					width: 1084,
+					height: 1556,
+					blur: '/atlparks-home@0.5x.webp',
+				},
+				{
+					link: '/atlparks-search.webp',
+					width: 2168,
+					height: 2062,
+					blur: '/atlparks-search@0.5x.webp',
+				},
+				{
+					link: '/atlparks-page.webp',
+					width: 1084,
+					height: 2923,
+					blur: '/atlparks-page@0.5x.webp',
+				},
 			],
 		},
 	},
@@ -128,8 +168,18 @@ const projects = [
 		screenshots: {
 			small: [''],
 			large: [
-				{ link: '/albumsurvivor-home.webp', width: 2596, height: 3164 },
-				{ link: '/albumsurvivor-admin.webp', width: 1298, height: 1914 },
+				{
+					link: '/albumsurvivor-home.webp',
+					width: 2596,
+					height: 3164,
+					blur: '/albumsurvivor-home@0.5x.webp',
+				},
+				{
+					link: '/albumsurvivor-admin.webp',
+					width: 1298,
+					height: 1914,
+					blur: '/albumsurvivor-admin@0.5x.webp',
+				},
 			],
 		},
 	},

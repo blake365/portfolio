@@ -311,7 +311,7 @@ export default function Home({
 													className='m-3 ml-0 border-2 border-black shadow-md '
 													loading='lazy'
 													placeholder='blur'
-													blurDataURL={item.link}
+													blurDataURL={item.blur}
 												/>
 											))}
 										</div>
