@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 import projects from '../data'
-import type { InferGetServerSidePropsType } from 'next'
+import type { InferGetStaticPropsType } from 'next'
 
 import { motion } from 'framer-motion'
 
@@ -14,7 +15,7 @@ import {
 
 import { Octokit } from '@octokit/core'
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
 	const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
 
 	let repos: string[] = []
@@ -49,12 +50,13 @@ export const getServerSideProps = async () => {
 			commitList,
 			projects,
 		},
+		revalidate: 86400,
 	}
 }
 
 export default function Home({
 	commitList,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
 	return (
 		<>
 			<Head>
@@ -73,10 +75,13 @@ export default function Home({
 					transition={{ duration: 1 }}
 					className='flex flex-col border-b-2 border-black shadow-md bg-beige sm:flex-row sm:border-2'
 				>
-					<img
+					<Image
 						className='object-cover border-t-2 border-b-2 border-black shadow-md sm:border-r-2 sm:border-b-0 sm:shadow-transparent sm:w-48 saturate-150 h-80 sm:h-auto sm:border-t-0'
 						src='/QS25_Plate1png.png'
+						width={750}
+						height={899}
 						alt='map'
+						priority={true}
 					/>
 					<div className='py-5 mx-4 my-2'>
 						<h1 className='pb-3 text-5xl font-bold'>Blake Morgan</h1>
@@ -297,12 +302,16 @@ export default function Home({
 										</summary>
 										<div className=''>
 											{project.screenshots.large.map((item) => (
-												<img
-													key={item}
-													src={item}
+												<Image
+													key={item.link}
+													src={item.link}
+													width={item.width}
+													height={item.height}
 													alt='screenshot'
 													className='m-3 ml-0 border-2 border-black shadow-md '
 													loading='lazy'
+													placeholder='blur'
+													blurDataURL={item.link}
 												/>
 											))}
 										</div>

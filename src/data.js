@@ -19,7 +19,7 @@ const projects = [
 		repo: ['promisance_front', 'typescript_promisance'],
 		title: 'NeoPromisance',
 		description:
-			'A remake of a classic multiplayer browser game from PHP to full stack javascript. While the game mechanic formulas are taken from the original PHP code, many systems were written from scratch or heavily modified. The game revolves around players building empires, managing resources, interacting with one another, and competing to achieve the highest net worth among all participants. /n The front end is built with Vite for the single page application experience. User and empire data is managed with Redux. The back end is a Typescript Node.js Express server with a Postgres database. TypeORM is used to communicate with the database. The game is currently live and playable as I add the last few features and make game play tweaks. The project is split into two repos, one for the front end and one for the back end.',
+			'A remake of a classic multiplayer browser game translated from PHP to full stack javascript. While the game mechanic formulas are taken from the original PHP code, many systems were written from scratch or heavily modified. The game revolves around players building empires, managing resources, interacting with one another, and competing to achieve the highest net worth among all participants. /n The front end is built with Vite for the single page application experience. User and empire data is managed with Redux. The back end is a Typescript Node.js Express server with a Postgres database. TypeORM is used to communicate with the database. The game is currently live and playable as I add the last few features and make game play tweaks. The project is split into two repos, one for the front end and one for the back end.',
 		type: 'Full Stack',
 		stack: [
 			'React',
@@ -44,7 +44,11 @@ const projects = [
 		statusColor: 'purple',
 		screenshots: {
 			small: [''],
-			large: ['/promi-home.webp', '/promi-explore.webp', '/promi-dark.webp'],
+			large: [
+				{ link: '/promi-home.webp', height: 3668, width: 1210 },
+				{ link: '/promi-explore.webp', height: 1832, width: 3068 },
+				{ link: '/promi-dark.webp', height: 3596, width: 6136 },
+			],
 		},
 	},
 	{
@@ -63,7 +67,10 @@ const projects = [
 		statusColor: 'green',
 		screenshots: {
 			small: [''],
-			large: ['/usgs-quakes-home.webp', '/usgs-quakes-page.webp'],
+			large: [
+				{ link: '/usgs-quakes-home.webp', width: 1721, height: 3652 },
+				{ link: '/usgs-quakes-page.webp', width: 1721, height: 1927 },
+			],
 		},
 	},
 	{
@@ -89,9 +96,9 @@ const projects = [
 		screenshots: {
 			small: [''],
 			large: [
-				'/atlparks-home.webp',
-				'/atlparks-search.webp',
-				'/atlparks-page.webp',
+				{ link: '/atlparks-home.webp', width: 1084, height: 1556 },
+				{ link: '/atlparks-search.webp', width: 2168, height: 2062 },
+				{ link: '/atlparks-page.webp', width: 1084, height: 2923 },
 			],
 		},
 	},
@@ -120,7 +127,10 @@ const projects = [
 		statusColor: 'green',
 		screenshots: {
 			small: [''],
-			large: ['/albumsurvivor-home.webp', '/albumsurvivor-admin.webp'],
+			large: [
+				{ link: '/albumsurvivor-home.webp', width: 2596, height: 3164 },
+				{ link: '/albumsurvivor-admin.webp', width: 1298, height: 1914 },
+			],
 		},
 	},
 ]
