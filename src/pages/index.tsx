@@ -47,7 +47,7 @@ const projects = [
 		repo: ['promisance_front', 'typescript_promisance'],
 		title: 'NeoPromisance',
 		description:
-			'A remake of a classic multiplayer browser game translated from PHP to full stack javascript. While the game mechanic formulas are taken from the original PHP code, many systems were written from scratch or heavily modified. The game revolves around players building empires, managing resources, interacting with one another, and competing to achieve the highest net worth among all participants. /n The front end is built with Vite for the single page application experience. User and empire data is managed with Redux. The back end is a Typescript Node.js Express server with a Postgres database. TypeORM is used to communicate with the database. The game is currently live and playable as the last few features and gameplay tweaks are worked on. The project is split into two repos, one for the front end and one for the back end.',
+			'A remake of a classic multiplayer turn based game translated from PHP to full stack javascript. While the game mechanic formulas are taken from the original PHP code, many systems were written from scratch or heavily modified. The game revolves around players building empires, managing resources, interacting with one another, and competing to achieve the highest net worth among all participants. /n The front end is built with React and Vite for the single page application experience. User and empire data is managed with Redux Toolkit. The back end is a Typescript Node.js Express server with a Postgres database. TypeORM is used to communicate with the database. The game is currently live and playable as the last few features and gameplay tweaks are worked on. The project is split into two repos, one for the front end and one for the back end.',
 		type: 'Full Stack',
 		stack: [
 			'React',
@@ -95,9 +95,9 @@ const projects = [
 		repo: ['usgs_quakes'],
 		title: 'USGS Quakes',
 		description:
-			'This site is built with Next.js and Tailwind to display data from the USGS Earthquakes API. The site showcases a featured earthquake, displays the ten most recent earthquakes above a certain magnitude, and offers a search filter for exploring the entire earthquake catalog. SWR is used to check for new recent earthquakes without reloading the site. Each quake has a details page that shows either a shakemap or the location as well as recent nearby quakes. The event descriptions include human impact and a tectonic summary based on available data, providing users with comprehensive earthquake insights.',
+			'This site is built with Next.js and Tailwind CSS to display data from the USGS Earthquakes API. The site showcases a featured earthquake, displays the ten most recent earthquakes above a certain magnitude, and offers a search filter for exploring the entire earthquake catalog. SWR is used to check for new recent earthquakes without reloading the site. Each quake has a details page that shows either a shakemap or the location as well as recent nearby quakes. The event descriptions include human impact and a tectonic summary based on available data, providing users with comprehensive earthquake insights.',
 		type: 'Front End',
-		stack: ['Next.js', 'Server Side Rendering', 'Tailwind'],
+		stack: ['Next.js', 'Server Side Rendering', 'Tailwind CSS'],
 		live: 'http://usgs-quakes.netlify.app',
 		github: ['https://github.com/blake365/usgs_quakes'],
 		image: 'link to image',
@@ -261,11 +261,11 @@ export default function Home({
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
-			<main className='max-w-4xl font-sans mb-14 sm:mt-12 sm:p-6 sm:mx-auto '>
+			<main className='max-w-4xl font-sans mb-14 sm:mt-8 sm:p-6 sm:mx-auto '>
 				<motion.div
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
-					transition={{ duration: 1 }}
+					transition={{ duration: 1.5 }}
 					className='flex flex-col border-b-2 border-black shadow-md bg-beige sm:flex-row sm:border-2'
 				>
 					<Image
@@ -283,7 +283,7 @@ export default function Home({
 						</h2>
 						<h3 className='text-lg sm:w-4/5'>
 							Exploring the southeast through{' '}
-							<span className='font-semibold text-emerald-700'>
+							<span className='font-semibold text-yellow-900'>
 								geotechnical engineering
 							</span>{' '}
 							by day and coding side projects by night.
@@ -292,7 +292,7 @@ export default function Home({
 							{/* github, linkedin and email links */}
 							<Link
 								href='https://github.com/blake365'
-								className='flex items-center p-2 rounded-md shadow-lg hover:scale-110 bg-emerald-700 text-beige hover:bg-emerald-500 w-fit'
+								className='flex items-center p-2 transition-all rounded-md shadow-lg hover:scale-110 bg-emerald-700 text-beige hover:bg-emerald-500 w-fit drop-shadow-lg'
 								target='_blank'
 								aria-label='github'
 							>
@@ -300,7 +300,7 @@ export default function Home({
 							</Link>
 							<Link
 								href='https://www.linkedin.com/in/blakeamorgan/'
-								className='flex items-center p-2 rounded-md shadow-lg hover:scale-110 bg-emerald-700 text-beige hover:bg-emerald-500 w-fit'
+								className='flex items-center p-2 transition-all rounded-md shadow-lg hover:scale-110 bg-emerald-700 text-beige hover:bg-emerald-500 w-fit drop-shadow-lg'
 								target='_blank'
 								aria-label='linkedin'
 							>
@@ -308,7 +308,7 @@ export default function Home({
 							</Link>
 							<Link
 								href='mailto:blake365morgan@me.com'
-								className='flex items-center p-2 rounded-md shadow-lg hover:scale-110 bg-emerald-700 text-beige hover:bg-emerald-500 w-fit'
+								className='flex items-center p-2 transition-all rounded-md shadow-lg hover:scale-110 bg-emerald-700 text-beige hover:bg-emerald-500 w-fit drop-shadow-lg'
 								target='_blank'
 								aria-label='email me'
 							>
@@ -321,7 +321,7 @@ export default function Home({
 				<motion.div
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
-					transition={{ duration: 1 }}
+					transition={{ duration: 1.5 }}
 					className='flex flex-col max-w-4xl mt-6 shadow-lg'
 				>
 					<div className='flex flex-col p-2 border-black bg-beige sm:border-2 border-y-2'>
@@ -333,21 +333,21 @@ export default function Home({
 							<div className='flex flex-row justify-evenly'>
 								<div className='flex flex-col'>
 									<div
-										className='w-[40px] h-[40px] border-black border mx-auto bg-beige shadow-md mb-1'
+										className='backdrop-blur w-[40px] h-[40px] border-black border mx-auto bg-beige shadow-lg drop-shadow-lg mb-1'
 										style={{ backgroundImage: 'url(/dots.svg)' }}
 									></div>
 									<div>Front End</div>
 								</div>
 								<div className='flex flex-col'>
 									<div
-										className='w-[40px] h-[40px] border-black border mx-auto bg-beige shadow-md mb-1'
+										className=' backdrop-blur w-[40px] h-[40px] border-black border mx-auto bg-beige shadow-lg drop-shadow-lg mb-1'
 										style={{ backgroundImage: 'url(/stripe2.svg)' }}
 									></div>
 									<div>Serverless</div>
 								</div>
 								<div className='flex flex-col'>
 									<div
-										className='w-[40px] h-[40px] border-black border mx-auto bg-beige shadow-md mb-1'
+										className='backdrop-blur w-[40px] h-[40px] border-black border mx-auto bg-beige shadow-lg drop-shadow-lg mb-1'
 										style={{ backgroundImage: 'url(/bigstripe.svg)' }}
 									></div>
 									<div>Full Stack</div>
@@ -390,8 +390,8 @@ export default function Home({
 							<motion.div
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 1 }}
-								transition={{ duration: 0.5 }}
-								className='flex flex-row transition-all border-black bg-beige last:shadow-lg first:border-t-2'
+								transition={{ duration: 1.5 }}
+								className='flex flex-row border-black shadow-lg bg-beige first:border-t-2'
 								key={project.title}
 							>
 								<div
@@ -411,7 +411,7 @@ export default function Home({
 													aria-label='external website link'
 												>
 													<IconExternalLink
-														className='inline mb-1 hover:scale-110'
+														className='inline mb-1 transition-all hover:scale-110 drop-shadow-lg'
 														width={25}
 														height={25}
 													/>
@@ -439,7 +439,7 @@ export default function Home({
 														<Link
 															key={link}
 															href={link}
-															className='flex items-center p-1 rounded-md shadow-md bg-emerald-700 text-beige hover:scale-110 hover:bg-emerald-500 w-fit'
+															className='flex items-center p-1 transition-all rounded-md shadow-md bg-emerald-700 text-beige hover:scale-110 hover:bg-emerald-500 w-fit drop-shadow-md'
 															target='_blank'
 															aria-label='github link'
 														>
@@ -464,7 +464,7 @@ export default function Home({
 														<Link
 															key={link}
 															href={link}
-															className='flex items-center p-1 rounded-md shadow-md bg-emerald-700 text-beige hover:scale-110 hover:bg-emerald-500 w-fit'
+															className='flex items-center p-1 transition-all rounded-md shadow-md bg-emerald-700 text-beige hover:scale-110 hover:bg-emerald-500 w-fit drop-shadow-md'
 															target='_blank'
 														>
 															<IconBrandGithub
@@ -484,14 +484,14 @@ export default function Home({
 										{project.stack.map((item) => (
 											<span
 												key={item}
-												className='px-1.5 mb-1.5 mr-1 transition-all border border-black shadow-md hover:-translate-y-1 text-beige bg-brown'
+												className='px-1.5 mb-1.5 mr-1 transition-all border border-black hover:-translate-y-1 text-beige bg-yellow-700'
 											>
 												{item}
 											</span>
 										))}
 									</div>
-									<details className='mb-2.5 transition-all duration-500 ease-in-out transform'>
-										<summary className='text-lg font-semibold cursor-pointer text-emerald-700'>
+									<details className='mb-2.5 transition-all'>
+										<summary className='text-lg font-semibold transition-all cursor-pointer text-emerald-700 hover:text-emerald-500 hover:font-bold w-fit'>
 											Screenshots
 										</summary>
 										<div className=''>
