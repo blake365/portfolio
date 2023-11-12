@@ -433,7 +433,7 @@ export default function Home({
 										{project.github.length === 1
 											? project.github.map((link, index) => (
 													<div
-														className='flex flex-row items-center my-1'
+														className='flex flex-row items-center mt-1 sm:my-1'
 														key={index}
 													>
 														<Link
@@ -458,7 +458,7 @@ export default function Home({
 										{project.github.length > 1
 											? project.github.map((link, index) => (
 													<div
-														className='flex flex-row items-center my-1 space-y-2 sm:space-y-0'
+														className='flex flex-row items-center first:mt-1 last:mt-2 sm:last:mt-1 sm:my-1'
 														key={index}
 													>
 														<Link
