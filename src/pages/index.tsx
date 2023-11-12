@@ -261,7 +261,7 @@ export default function Home({
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
-			<main className='max-w-4xl font-sans mb-14 sm:mt-8 sm:p-6 sm:mx-auto '>
+			<main className='max-w-5xl font-sans mb-14 sm:mt-8 sm:p-6 sm:mx-auto '>
 				<motion.div
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
@@ -269,14 +269,14 @@ export default function Home({
 					className='flex flex-col border-b-2 border-black shadow-md bg-beige sm:flex-row sm:border-2'
 				>
 					<Image
-						className='object-cover border-t-2 border-b-2 border-black shadow-md sm:border-r-2 sm:border-b-0 sm:shadow-transparent sm:w-48 saturate-150 h-80 sm:h-auto sm:border-t-0'
+						className='object-cover border-t-2 border-b-2 border-black shadow-md sm:border-r-2 sm:border-b-0 sm:shadow-transparent sm:w-1/4 saturate-150 h-80 sm:h-auto sm:border-t-0'
 						src='/QS25_Plate1png.png'
 						width={750}
 						height={899}
 						alt='map'
 						priority={true}
 					/>
-					<div className='py-5 mx-4 my-2'>
+					<div className='py-5 mx-6 my-auto sm:ml-8'>
 						<h1 className='pb-3 text-5xl font-bold'>Blake Morgan</h1>
 						<h2 className='py-1 text-2xl font-semibold'>
 							Professional Geologist / Hobby Web Developer
@@ -322,7 +322,7 @@ export default function Home({
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{ duration: 1.5 }}
-					className='flex flex-col max-w-4xl mt-6 shadow-lg'
+					className='flex flex-col mt-6 shadow-lg'
 				>
 					<div className='flex flex-col p-2 border-black bg-beige sm:border-2 border-y-2'>
 						<h2 className='mx-auto text-3xl font-bold'>Selected Projects</h2>
@@ -357,7 +357,7 @@ export default function Home({
 					</div>
 				</motion.div>
 
-				<div className='flex flex-col max-w-4xl mt-6 shadow-lg'>
+				<div className='flex flex-col mt-6 shadow-lg'>
 					{projects.map((project, index) => {
 						if (index > 0) {
 							index += 1
@@ -429,7 +429,7 @@ export default function Home({
 											</div>
 										))}
 									</div>
-									<div className='sm:space-x-5 sm:flex'>
+									<div className='mt-1 sm:space-x-5 sm:flex'>
 										{project.github.length === 1
 											? project.github.map((link, index) => (
 													<div
@@ -458,7 +458,7 @@ export default function Home({
 										{project.github.length > 1
 											? project.github.map((link, index) => (
 													<div
-														className='flex flex-row items-center my-1'
+														className='flex flex-row items-center my-1 space-y-2 sm:space-y-0'
 														key={index}
 													>
 														<Link
@@ -484,7 +484,7 @@ export default function Home({
 										{project.stack.map((item) => (
 											<span
 												key={item}
-												className='px-1.5 mb-1.5 mr-1 transition-all border border-black hover:-translate-y-1 text-beige bg-yellow-700'
+												className='px-1.5 mb-1.5 mr-1 transition-all border-[1.5px] border-yellow-950 hover:-translate-y-1 text-beige bg-yellow-700'
 											>
 												{item}
 											</span>
