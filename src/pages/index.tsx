@@ -52,13 +52,13 @@ const projects = [
 		stack: [
 			'React',
 			'Vite',
-			'Typescript',
 			'Mantine UI',
 			'Redux Toolkit',
-			'Postgres',
-			'TypeORM',
+			'Typescript',
 			'Node',
 			'Express',
+			'Postgres',
+			'TypeORM',
 		],
 		live: 'https://www.neopromisance.com',
 		github: [
