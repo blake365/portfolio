@@ -30,6 +30,11 @@ import cfb4 from "../../public/cfb4.webp";
 
 import { Octokit } from "@octokit/core";
 
+type CommitData = {
+	repo: string;
+	date: string;
+};
+
 const projects = [
 	{
 		repo: ["cfb", "cfb-server"],
@@ -247,15 +252,9 @@ const projects = [
 
 export const getStaticProps = async () => {
 	const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-
-	let repos: string[] = [];
 	const owner = "blake365";
 
-	for (const project of projects) {
-		for (const item of project.repo) {
-			repos.push(item);
-		}
-	}
+	const repos: string[] = projects.flatMap((project) => project.repo);
 
 	const fetchCommits = async () => {
 		const commitPromises = repos.map(async (repo) => {
@@ -264,22 +263,21 @@ export const getStaticProps = async () => {
 				{ owner, repo: repo, per_page: 1 },
 			);
 
-			if (MostRecentCommit.data[0].commit.author?.date) {
-				return MostRecentCommit.data[0].commit.author?.date;
-			}
-
-			return "";
+			return {
+				repo,
+				date: MostRecentCommit.data[0].commit.author?.date || "",
+			};
 		});
 
-		const commitList = await Promise.all(commitPromises);
-		return commitList;
+		const commitData = await Promise.all(commitPromises);
+		return commitData;
 	};
 
-	const commitList = await fetchCommits();
+	const commitData = await fetchCommits();
 
 	return {
 		props: {
-			commitList,
+			commitData,
 			projects,
 		},
 		revalidate: 86400,
@@ -287,7 +285,7 @@ export const getStaticProps = async () => {
 };
 
 export default function Home({
-	commitList,
+	commitData,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
 	return (
 		<>
@@ -397,33 +395,13 @@ export default function Home({
 				</motion.div>
 
 				<div className="flex flex-col mt-6 shadow-lg">
-					{projects.map((project, index) => {
-						if (index > 0) {
-							index += 1;
-						}
-						let commitArray: string[] = [];
-						let formattedDateString = "Loading";
-
-						if (project.github.length > 1) {
-							project.github.forEach((item, index) => {
-								const dateString = commitList[index];
-
-								const year = dateString.substring(0, 4);
-								const month = dateString.substring(5, 7);
-								const day = dateString.substring(8, 10);
-
-								formattedDateString = [month, day, year].join("/");
-								commitArray.push(formattedDateString);
+					{projects.map((project) => {
+						const projectCommits = commitData
+							.filter((commit) => project.repo.includes(commit.repo))
+							.map((commit) => {
+								const date = new Date(commit.date);
+								return date.toLocaleDateString("en-US");
 							});
-						} else {
-							const dateString = commitList[index];
-
-							const year = dateString.substring(0, 4);
-							const month = dateString.substring(5, 7);
-							const day = dateString.substring(8, 10);
-
-							formattedDateString = [month, day, year].join("/");
-						}
 
 						return (
 							<motion.div
@@ -462,62 +440,35 @@ export default function Home({
 										</div>
 									</div>
 									<div className="space-y-2 text-md">
-										{project.description.split("/n").map((item, index) => (
-											<div className="" key={index}>
+										{project.description.split("/n").map((item, i) => (
+											<div className="" key={`${project.title}-desc-${i}`}>
 												{item}
 											</div>
 										))}
 									</div>
 									<div className="mt-1 sm:space-x-5 sm:flex">
-										{project.github.length === 1
-											? project.github.map((link, index) => (
-													<div
-														className="flex flex-row items-center mt-1 sm:my-1"
-														key={index}
-													>
-														<Link
-															key={link}
-															href={link}
-															className="flex items-center p-1 transition-all rounded-md shadow-md bg-emerald-700 text-beige hover:scale-110 hover:bg-emerald-500 w-fit drop-shadow-md"
-															target="_blank"
-															aria-label="github link"
-														>
-															<IconBrandGithub
-																className="inline"
-																width={20}
-																height={20}
-															/>
-														</Link>
-														<span className="ml-1 font-semibold">
-															Last Commit: {formattedDateString}
-														</span>
-													</div>
-												))
-											: null}
-										{project.github.length > 1
-											? project.github.map((link, index) => (
-													<div
-														className="flex flex-row items-center first:mt-1 last:mt-2 sm:last:mt-1 sm:my-1"
-														key={index}
-													>
-														<Link
-															key={link}
-															href={link}
-															className="flex items-center p-1 transition-all rounded-md shadow-md bg-emerald-700 text-beige hover:scale-110 hover:bg-emerald-500 w-fit drop-shadow-md"
-															target="_blank"
-														>
-															<IconBrandGithub
-																className="inline"
-																width={20}
-																height={20}
-															/>
-														</Link>
-														<span className="ml-1 font-semibold">
-															Last Commit: {commitArray[index]}
-														</span>
-													</div>
-												))
-											: null}
+										{project.github.map((link, i) => (
+											<div
+												className="flex flex-row items-center first:mt-1 last:mt-2 sm:last:mt-1 sm:my-1"
+												key={`${project.title}-github-${link}`}
+											>
+												<Link
+													href={link}
+													className="flex items-center p-1 transition-all rounded-md shadow-md bg-emerald-700 text-beige hover:scale-110 hover:bg-emerald-500 w-fit drop-shadow-md"
+													target="_blank"
+													aria-label="github link"
+												>
+													<IconBrandGithub
+														className="inline"
+														width={20}
+														height={20}
+													/>
+												</Link>
+												<span className="ml-1 font-semibold">
+													Last Commit: {projectCommits[i]}
+												</span>
+											</div>
+										))}
 									</div>
 									<div className="flex flex-wrap p-2 pl-0 mt-1">
 										{project.stack.map((item) => (
@@ -536,7 +487,7 @@ export default function Home({
 										<div className="">
 											{project.screenshots.large.map((item, index) => (
 												<Image
-													key={index}
+													key={`${project.title}-screenshot-${index}`}
 													src={item.link}
 													width={item.width}
 													height={item.height}
