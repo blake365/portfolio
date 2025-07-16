@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import type { InferGetStaticPropsType } from "next";
 
 import { motion } from "framer-motion";
@@ -12,8 +12,7 @@ import {
 	IconMail,
 } from "@tabler/icons-react";
 
-import albumAdmin from "../../public/albumsurvivor-admin.webp";
-import albumHome from "../../public/albumsurvivor-home.webp";
+
 import atlparksHome from "../../public/atlparks-home.webp";
 import atlparksPage from "../../public/atlparks-page.webp";
 import atlparksSearch from "../../public/atlparks-search.webp";
@@ -27,6 +26,11 @@ import cfb1 from "../../public/cfb1.webp";
 import cfb2 from "../../public/cfb2.webp";
 import cfb3 from "../../public/cfb3.webp";
 import cfb4 from "../../public/cfb4.webp";
+import Slice1 from "../../public/Slice 1.png";
+import Slice2 from "../../public/Slice 2.png";
+import Slice3 from "../../public/Slice 3.png";
+import Slice4 from "../../public/Slice 4.png";
+
 
 import { Octokit } from "@octokit/core";
 
@@ -35,12 +39,129 @@ type CommitData = {
 	date: string;
 };
 
-const projects = [
+type Screenshot = {
+	link: StaticImageData;
+	height: number;
+	width: number;
+};
+
+type Project = {
+	repo: string[];
+	title: string;
+	description: string;
+	type: string;
+	stack: string[];
+	live?: string;
+	github: string[];
+	image?: string;
+	sidebar: string;
+	firstCommit?: string;
+	status?: string;
+	statusColor?: string;
+	screenshots: {
+		small: string[];
+		large: Screenshot[];
+	};
+};
+
+const projects: Project[] = [
+	{
+		repo: [],
+		title: "Backseat Geologist",
+		description:
+			"Backseat Geologist is an app that shows geologic maps and provides real time updates on the bedrock at the user's location as they travel. The app uses Macrostrat API data and built in iOS mapping and location services to provide a seamless native experience. Geology descriptions are created by processing the geologic data from Macrostrat and converting it in to a description or narrative with an LLM. Text to speech services are used to create audio from the generated descriptions. The app is built with swift and swiftUI. A node server hosted on cloudflare workers is used to handle the LLM, TTS, and various analytics. Additional features include offline routes, custom route creation, downloadable routes, multiple audience settings, and more.",
+		type: "Swift",
+		stack: [
+			"Swift",
+			"SwiftUI",
+			"Core Location",
+			"Core Data",
+			"Swift Concurrency",
+			"Node.js",
+			"Hono",
+			"Cloudflare Workers",
+			"Cloudflare D1", 
+			"Cloudflare Pages",
+			"Azure Text to Speech",
+			"Google Text to Speech",
+			"MeloTTS",
+		],
+		live: "https://apps.apple.com/us/app/backseat-geologist/id6746209605",
+		github: [],
+		sidebar: "317-K.svg",
+		screenshots: {
+			small: [""],
+			large: [
+				{
+					link: Slice1,
+					height: 2267,
+					width: 1095,
+				},
+				{
+					link: Slice2,
+					height: 2267,
+					width: 1095,
+				},
+				{
+					link: Slice3,
+					height: 2267,
+					width: 1095,
+				},
+				{
+					link: Slice4,
+					height: 2267,
+					width: 1095,
+				},
+			],
+		},
+	},
+	{
+		repo: ["macrostrat-mcp"],
+		title: "Macrostrat MCP Server",
+		description:
+			"An MCP server for the Macrostrat geology API. Add the server to a client like Claude and you can ask it natural language questions about the geology of a location and data will be fetched from the Macrostrat API to provide geological data as context to the model.",
+		type: "MCP Server",
+		stack: [
+			"Typescript",
+			"MCP",
+			"Claude"
+		],
+		// live: "https://www.cfbsickos.com",
+		github: [
+			"https://github.com/blake365/macrostrat-mcp",
+		],
+		sidebar: "303-K.svg",
+				screenshots: {
+			small: [],
+			large: [],
+		},
+	},
+	{
+		repo: ["usgs-quakes-mcp"],
+		title: "USGS Earthquakes MCP Server",
+		description:
+			"An MCP server for the USGS Earthquakes API. Add the server to a client like Claude and you can ask it natural language questions about earthquakes and fresh data will be fetched from the USGS API to provide context to the model.",
+		type: "MCP Server",
+		stack: [
+			"Typescript",
+			"MCP",
+			"Claude"
+		],
+		// live: "https://www.cfbsickos.com",
+		github: [
+			"https://github.com/blake365/usgs-quakes-mcp",
+		],
+		sidebar: "303-K.svg",
+				screenshots: {
+			small: [],
+			large: [],
+		},
+	},
 	{
 		repo: ["cfb", "cfb-server"],
 		title: "CFB Sickos",
 		description:
-			"A site to see which college football games are most interesting to watch each week. Data is periodically fetched from the cfb data API. Visitors can select from a series of emojis to impact the interest score of each game. During games, a live updating scoreboard is shown. Users can select favorite teams and see a selection of team stats. Games can viewed by team or conference and sorted by interest score or date. A card and table view are available for the game data. /n The site is mostly client side rendered to keep data as up to date as possible. The Bun server handles data fetching with the cfb data API and stores the data in a postgres database to limit direct calls to the external API. User reaction data is stored in the database and measures are taken to prevent rate limit interactions.",
+			"A site to see which college football games are most interesting to watch each week. Data is periodically fetched from the cfb data API. Visitors can select from a series of emojis to impact the interest score of each game. During games, a live updating scoreboard is shown. Users can select favorite teams and see a selection of team stats. Games can viewed by team or conference and sorted by interest score or date. A card and table view are available for the game data. /n The site is mostly client side rendered to keep data as up to date as possible. The Bun server handles data fetching with the cfb data API and stores the data in a postgres database to limit direct calls to the external API. User reaction data is stored in the database and measures are taken to rate limit interactions.",
 		type: "Full Stack",
 		stack: [
 			"Typescript",
@@ -53,12 +174,12 @@ const projects = [
 			"Postgres",
 			"Drizzle ORM",
 		],
-		live: "https://www.cfbsickos.com",
+		// live: "https://www.cfbsickos.com",
 		github: [
 			"https://github.com/blake365/cfb",
 			"https://github.com/blake365/cfb-server",
 		],
-		sidebar: "bigstripe.svg",
+		sidebar: "306-K.svg",
 		screenshots: {
 			small: [""],
 			large: [
@@ -108,7 +229,7 @@ const projects = [
 			"https://github.com/blake365/typescript_promisance",
 		],
 		image: "link to image",
-		sidebar: "bigstripe.svg",
+		sidebar: "306-K.svg",
 		firstCommit: "01/19/2022",
 		status: "Paused",
 		statusColor: "purple",
@@ -143,7 +264,7 @@ const projects = [
 		live: "http://usgs-quakes.netlify.app",
 		github: ["https://github.com/blake365/usgs_quakes"],
 		image: "link to image",
-		sidebar: "dots.svg",
+		sidebar: "427-K.svg",
 		firstCommit: "12/27/2021",
 		status: "Maintenance",
 		statusColor: "green",
@@ -184,7 +305,7 @@ const projects = [
 		live: "http://atlparks.vercel.app",
 		github: ["https://github.com/blake365/atlparks"],
 		image: "link to image",
-		sidebar: "stripe2.svg",
+		sidebar: "230-K.svg",
 		firstCommit: "12/24/2022",
 		status: "Final Touches",
 		statusColor: "pink",
@@ -205,45 +326,6 @@ const projects = [
 					link: atlparksPage,
 					width: 1084,
 					height: 2923,
-				},
-			],
-		},
-	},
-	{
-		repo: ["albumSurvivor"],
-		title: "Album Survivor",
-		description:
-			"My first large original project (and it shows). On this site, visitors are presented with a series of albums and their tracks. Users vote each day for their least favorite track and the track with the highest number of votes is eliminated until the best song survives. Registered and non-registered users can participate, with registered users having access to their voting history. Steps are taken to try and prevent users from casting multiple votes each day and a daily vote archive is saved. Admins have the ability to manage albums and tracks by adding, deleting, and editing content. ",
-		type: "Full Stack",
-		stack: [
-			"React",
-			"Class Components",
-			"Material UI",
-			"Redux",
-			"Firebase",
-			"Node",
-			"Express",
-			"Cron Jobs",
-		],
-		// live: 'http://album-survivor.web.app',
-		github: ["https://github.com/blake365/albumSurvivor"],
-		image: "link to image",
-		sidebar: "bigstripe.svg",
-		firstCommit: "11/01/2020",
-		status: "Complete",
-		statusColor: "green",
-		screenshots: {
-			small: [""],
-			large: [
-				{
-					link: albumHome,
-					width: 2596,
-					height: 3164,
-				},
-				{
-					link: albumAdmin,
-					width: 1298,
-					height: 1914,
 				},
 			],
 		},
@@ -371,23 +453,37 @@ export default function Home({
 								<div className="flex flex-col">
 									<div
 										className="backdrop-blur w-[40px] h-[40px] border-black border mx-auto bg-beige shadow-lg drop-shadow-lg mb-1"
-										style={{ backgroundImage: "url(/dots.svg)" }}
+										style={{ backgroundImage: "url(/427-K.svg)" }}
 									/>
 									<div>Front End</div>
 								</div>
 								<div className="flex flex-col">
 									<div
 										className=" backdrop-blur w-[40px] h-[40px] border-black border mx-auto bg-beige shadow-lg drop-shadow-lg mb-1"
-										style={{ backgroundImage: "url(/stripe2.svg)" }}
+										style={{ backgroundImage: "url(/230-K.svg)" }}
 									/>
 									<div>Serverless</div>
 								</div>
 								<div className="flex flex-col">
 									<div
 										className="backdrop-blur w-[40px] h-[40px] border-black border mx-auto bg-beige shadow-lg drop-shadow-lg mb-1"
-										style={{ backgroundImage: "url(/bigstripe.svg)" }}
+										style={{ backgroundImage: "url(/306-K.svg)" }}
 									/>
 									<div>Full Stack</div>
+								</div>
+								<div className="flex flex-col">
+									<div
+										className="backdrop-blur w-[40px] h-[40px] border-black border mx-auto bg-beige shadow-lg drop-shadow-lg mb-1"
+										style={{ backgroundImage: "url(/317-K.svg)" }}
+									/>
+									<div>iOS App</div>
+								</div>
+								<div className="flex flex-col">
+									<div
+										className="backdrop-blur w-[40px] h-[40px] border-black border mx-auto bg-beige shadow-lg drop-shadow-lg mb-1"
+										style={{ backgroundImage: "url(/303-K.svg)" }}
+									/>
+									<div>MCP Server</div>
 								</div>
 							</div>
 						</div>
@@ -480,25 +576,27 @@ export default function Home({
 											</span>
 										))}
 									</div>
-									<details className="mb-2.5 transition-all">
-										<summary className="text-lg font-semibold transition-all cursor-pointer text-emerald-700 hover:text-emerald-500 hover:font-bold w-fit">
-											Screenshots
-										</summary>
-										<div className="">
-											{project.screenshots.large.map((item, index) => (
-												<Image
-													key={`${project.title}-screenshot-${index}`}
-													src={item.link}
-													width={item.width}
-													height={item.height}
-													alt="screenshot"
-													className="m-3 ml-0 border-2 border-black shadow-md bg-emerald-700"
-													loading="lazy"
-													placeholder="blur"
-												/>
-											))}
-										</div>
-									</details>
+									{project.screenshots.large.length > 0 && (
+										<details className="mb-2.5 transition-all">
+											<summary className="text-lg font-semibold transition-all cursor-pointer text-emerald-700 hover:text-emerald-500 hover:font-bold w-fit">
+												Screenshots
+											</summary>
+											<div className="">
+												{project.screenshots.large.map((item, index) => (
+													<Image
+														key={`${project.title}-screenshot-${index}`}
+														src={item.link}
+														width={item.width}
+														height={item.height}
+														alt="screenshot"
+														className="m-3 ml-0 border-2 border-black shadow-md bg-emerald-700"
+														loading="lazy"
+														placeholder="blur"
+													/>
+												))}
+											</div>
+										</details>
+									)}
 								</div>
 							</motion.div>
 						);
