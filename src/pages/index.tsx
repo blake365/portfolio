@@ -65,6 +65,27 @@ type Project = {
 };
 
 const projects: Project[] = [
+		{
+		repo: ["volcanoes-mcp"],
+		title: "Smithsonian Volcanoes MCP Server",
+		description:
+			"An MCP server for the Smithsonian Global Volcanism Program. Add the server to a client like Claude and you can ask it natural language questions about volcanoes and data will be fetched from the Smithsonian Global Volcanism Program to provide volcano data as context to the model.",
+		type: "MCP Server",
+		stack: [
+			"Typescript",
+			"MCP",
+			"Claude"
+		],
+		// live: "https://www.cfbsickos.com",
+		github: [
+			"https://github.com/blake365/volcanoes-mcp",
+		],
+		sidebar: "303-K.svg",
+				screenshots: {
+			small: [],
+			large: [],
+		},
+	},
 	{
 		repo: [],
 		title: "Backseat Geologist",
@@ -86,7 +107,7 @@ const projects: Project[] = [
 			"Google Text to Speech",
 			"MeloTTS",
 		],
-		live: "https://apps.apple.com/us/app/backseat-geologist/id6746209605",
+		live: "https://backseatgeologist.com",
 		github: [],
 		sidebar: "317-K.svg",
 		screenshots: {
